@@ -1,9 +1,12 @@
 import java.io.File; // Import the File class
+
 import java.io.FileNotFoundException; // Import this class to handle errors
 import java.util.Scanner; // Import the Scanner class to read text files
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.LinkedList;
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 public class App {
 
@@ -29,6 +32,20 @@ public class App {
 			removeDuplicates(listDate);
 			System.out.println(listDate);
 		} catch (FileNotFoundException e) {
+			System.out.println("An error occurred.");
+			e.printStackTrace();
+		}
+
+		try {
+			FileWriter myWriter = new FileWriter(outputFilePath);
+			
+			for (MyData date : listDate) {
+				myWriter.write(date.toString()+"\n");
+			}
+			
+			myWriter.close();
+			System.out.println("Successfully wrote to the file.");
+		} catch (IOException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
@@ -210,8 +227,7 @@ public class App {
 			for (int j = 0; j < listDate.size(); j++) {
 				if (listDate.get(i).getYear() == listDate.get(j).getYear()
 						&& listDate.get(i).getMonth() == listDate.get(j).getMonth()
-						&& listDate.get(i).getDay() == listDate.get(j).getDay()
-						&& i != j) {
+						&& listDate.get(i).getDay() == listDate.get(j).getDay() && i != j) {
 					listDate.remove(i);
 				}
 			}

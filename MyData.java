@@ -13,7 +13,7 @@ public class MyData {
 	}
 	
 	public String toString() {
-		String str = this.getYear() + " " + this.getMonth() + " " + this.getDay();
+		String str = this.getDay() + "/" + this.getMonth() + "/" + this.getYear();
 		return str;
 	}
 
