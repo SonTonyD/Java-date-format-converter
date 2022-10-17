@@ -5,8 +5,8 @@ import java.util.Scanner; // Import the Scanner class to read text files
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.LinkedList;
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.FileWriter; // Import the FileWriter class
+import java.io.IOException; // Import the IOException class to handle errors
 
 public class App {
 
@@ -28,9 +28,12 @@ public class App {
 
 			}
 			myReader.close();
-			sortData(listDate);
+			
 			removeDuplicates(listDate);
+			sortData(listDate);
+			
 			System.out.println(listDate);
+			
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
@@ -38,11 +41,11 @@ public class App {
 
 		try {
 			FileWriter myWriter = new FileWriter(outputFilePath);
-			
+
 			for (MyData date : listDate) {
-				myWriter.write(date.toString()+"\n");
+				myWriter.write(date.toString() + "\n");
 			}
-			
+
 			myWriter.close();
 			System.out.println("Successfully wrote to the file.");
 		} catch (IOException e) {
@@ -207,17 +210,13 @@ public class App {
 
 	public static void swap(LinkedList<MyData> list, MyData ele1, MyData ele2) {
 
-		// Getting the positions of the elements
 		int index1 = list.indexOf(ele1);
 		int index2 = list.indexOf(ele2);
 
-		// Returning if the element is not present in the
-		// LinkedList
 		if (index1 == -1 || index2 == -1) {
 			return;
 		}
 
-		// Swapping the elements
 		list.set(index1, ele2);
 		list.set(index2, ele1);
 	}
